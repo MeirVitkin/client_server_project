@@ -6,10 +6,8 @@ async function getTodos(id) {
         WHERE userId = ?
     `;
     const [data] = await pool.query(todosQuery, [id]);
-    console.log(data);
     return data;
 }
-// getTodos(1)
 
 async function getCompletedTodos(id) {
     const todosQuery = `
