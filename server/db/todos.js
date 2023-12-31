@@ -9,7 +9,7 @@ async function getTodos(id) {
     console.log(data);
     return data;
 }
-//getTodos(1)
+// getTodos(1)
 
 async function getCompletedTodos(id) {
     const todosQuery = `
@@ -43,12 +43,8 @@ async function addTodos(userId, title) {
     const [result] = await pool.query(insertQuery, [userId, title]);
     console.log(result);
 }
-addTodos(1, "moshe hadar ha-gever")
+// addTodos(1, "moshe hadar ha-gever")
 
-                           //עד כה הפונקציות שכתבנו ובדקתי בגדול, עובדות כדרוש
-                           //הפונקציות שנשארו לעשות 
-
-//edit title
 async function editTitle(userId, id, title){
     const todo = `
         UPDATE todos
@@ -100,3 +96,10 @@ async function deledeTodo(userId, id){
 
 }
 // deledeTodo(1,5);
+module.exports = {
+    getTodos,
+    addTodos,
+    editTitle,
+    checkTodo,
+    deledeTodo
+}
