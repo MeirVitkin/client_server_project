@@ -5,10 +5,9 @@ async function getPosts() {
         SELECT * FROM posts
     `;
     const [data] = await pool.query(postsQuery);
-    console.log(data);
-    return data;
+    if (data) return data;
+    throw new Error('No posts found');
 }
-// getPosts()
 
 async function getUserPosts(userId) {
     const postsQuery = `
@@ -16,10 +15,10 @@ async function getUserPosts(userId) {
         WHERE userId = ?
     `;
     const [data] = await pool.query(postsQuery, [userId]);
-    console.log(data);
-    return data;
+     if (data)return data;
+    throw new Error('No posts found');
 }
-// getUserPosts(1)
+
 async function addPost(userId, title, body) {
     const insertQuery = `
         INSERT INTO posts(userId, title, body)
@@ -28,7 +27,6 @@ async function addPost(userId, title, body) {
     const [result] = await pool.query(insertQuery, [userId, title, body]);
     console.log(result);
 }
-// addPost(1,'test', 'i am just testing!!!!')
 
 async function editPostTitle(userId, id, title) {
     const editTitleQuery = `
@@ -43,7 +41,6 @@ async function editPostTitle(userId, id, title) {
         return affectedRows
     }
 }
-// editPostTitle(1,1,'updated successfully')
 
 async function editPostBody(userId, id, body) {
     const editBodyQuery = `
@@ -53,12 +50,11 @@ async function editPostBody(userId, id, body) {
         AND id = ?
     `
     const [{ affectedRows }] = await pool.query(editBodyQuery, [body, userId, id])
-    if (affectedRows) {
+    if (affectedRows)return
+    throw new Error('No post found');
 
-        return affectedRows
-    }
+
 }
-// editPostBody(1,1,' body updated successfully')
 
 async function deletePost(userId, postId) {
     const deletePostQuery = `
@@ -70,17 +66,15 @@ async function deletePost(userId, postId) {
     const [{ affectedRows: affectedRowsPost }] = await pool.query(deletePostQuery, [userId, postId]);
     console.log(`Posts deleted: ${affectedRowsPost}`);
 
-    const deleteCommentsQuery = `
-        DELETE FROM comments 
-        WHERE postId = ? 
-    `;
+    // const deleteCommentsQuery = `
+    //     DELETE FROM comments 
+    //     WHERE postId = ? 
+    // `;
 
-    const [{ affectedRows: affectedRowsComments }] = await pool.query(deleteCommentsQuery, [postId]);
-    console.log(`Comments deleted: ${affectedRowsComments}`);
+    // const [{ affectedRows: affectedRowsComments }] = await pool.query(deleteCommentsQuery, [postId]);
+    // console.log(`Comments deleted: ${affectedRowsComments}`);
 }
 
-// Example usage
-// deletePost(2, 12);
 
 
 module.exports = {

@@ -26,4 +26,31 @@ todosRoute.post('/:id', async (req, res) => {
         res.status(500).send();
     }
 });
+todosRoute.put('/edit/:id', async (req, res) => {
+    try{
+        editTitle(req.params.id, req.body.id, req.body.title);
+        res.send();
+    }catch(err){
+        res.statusMessage = err.message;
+        res.status(500).send();
+    }
+})
+todosRoute.put('/check/:id', async (req, res) => {
+    try{
+        checkTodo(req.params.id, req.query.id);
+        res.send();
+    }catch(err){
+        res.statusMessage = err.message;
+        res.status(500).send();
+    }
+})
+todosRoute.delete('/:id', async (req, res) => {
+    try{
+        deledeTodo(req.params.id, req.query.id)
+        res.send();
+    }catch(err){
+        res.statusMessage = err.message;
+        res.status(500).send(); 
+    }
+})
 module.exports = todosRoute;

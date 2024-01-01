@@ -1,6 +1,7 @@
 const express = require('express');
 const loginRoute = require('./routes/loginRoute');
 const todosRoute = require('./routes/todosRouts')
+const postsRoute = require('./routes/postsRoute')
 
 const app = express();
 
@@ -8,6 +9,7 @@ app.use(express.json())
 
 app.use('/login',loginRoute)
 app.use('/todos',todosRoute)
+app.use('/posts',postsRoute)
 
 const port = process.env.PORT || 8000;
 

@@ -41,7 +41,6 @@ async function addTodos(userId, title) {
     const [result] = await pool.query(insertQuery, [userId, title]);
     console.log(result);
 }
-// addTodos(1, "moshe hadar ha-gever")
 
 async function editTitle(userId, id, title){
     const todo = `
@@ -52,11 +51,10 @@ async function editTitle(userId, id, title){
     `
     const [{affectedRows}]= await pool.query(todo,[title, userId, id])
     if(affectedRows){
-
         return affectedRows
     }
+    throw new Error(`Could not update title to ${title}`);
 }
-//editTitle(1,3, "i just test it ")
 
 async function checkTodo(userId, id){
     const checked =`
@@ -76,12 +74,10 @@ async function checkTodo(userId, id){
     AND id = ?
     `
     const [{affectedRows}] = await pool.query(editTodoChecked,[userId, id])
-    
-    console.log(affectedRows);
-    
-}
-//checkTodo(1,1)
+    if (affectedRows) return
+    throw new Error(`Could not check it `);
 
+}
 
 async function deledeTodo(userId, id){
     const deleteQuery = `
@@ -90,10 +86,11 @@ async function deledeTodo(userId, id){
         AND id = ?
     `;
     const [{affectedRows}] = await pool.query(deleteQuery,[userId, id])
-    console.log(affectedRows);
+    if(affectedRows) return
+    throw new Error(`Could not delete it `);
+
 
 }
-// deledeTodo(1,5);
 module.exports = {
     getTodos,
     addTodos,
