@@ -10,7 +10,7 @@ async function login(userName, password) {
         const userId = userData.id;
         const passwordQuery = `
         SELECT * FROM passwords
-        WHERE user_id = ? AND password = ?
+        WHERE userId = ? AND password = ?
     `;
         const [passwordData] = await pool.query(passwordQuery, [userId, password]);
         console.log(passwordData);

@@ -28,7 +28,7 @@ todosRoute.post('/:id', async (req, res) => {
 });
 todosRoute.put('/edit/:id', async (req, res) => {
     try{
-        editTitle(req.params.id, req.body.id, req.body.title);
+       await editTitle(req.params.id, req.body.id, req.body.title);
         res.send();
     }catch(err){
         res.statusMessage = err.message;
@@ -37,7 +37,7 @@ todosRoute.put('/edit/:id', async (req, res) => {
 })
 todosRoute.put('/check/:id', async (req, res) => {
     try{
-        checkTodo(req.params.id, req.query.id);
+        await checkTodo(req.params.id, req.query.id);
         res.send();
     }catch(err){
         res.statusMessage = err.message;
@@ -46,7 +46,7 @@ todosRoute.put('/check/:id', async (req, res) => {
 })
 todosRoute.delete('/:id', async (req, res) => {
     try{
-        deledeTodo(req.params.id, req.query.id)
+        await deledeTodo(req.params.id, req.query.id)
         res.send();
     }catch(err){
         res.statusMessage = err.message;

@@ -1,35 +1,26 @@
-import { useState } from "react";
-import Nav from "./Nav";
-import Login from "./component/Login";
+import './App.css';
+import Home from './component/home';
+import Info from './component/info';
+import Login from './component/login';
+import Posts from './component/posts';
+import Todos from './component/todos';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
-const App = () => {
-  const [isLog, setIslog] = useState(false);
-  const [user, setUser] = useState(null);
 
+
+function App() {
   return (
-
-    <div className="pageConntainer">
-
-      <div className="h1Container">
-        <h1 className="socialMediaHeader">____ </h1>
-        <h1 className="userNameHeader">{user?.name}</h1>
-      </div>
-      {isLog && (
-        <nav>
-          <Nav id={user.id} />
-        </nav>
-      )}
-      {!isLog && (
-        <Login
-          setIslog={setIslog}
-          setUser={setUser}
-          isLog={isLog}
-        />
-      )}
-
+    <div className="App">
+      <Routes>
+        <Route index element={<Navigate to='login' />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/home/:userName' element={<Home />} />
+        <Route path='/home/:userName/Posts' element={<Posts/>} />
+        <Route path='/home/:userName/Todos' element={<Todos/>} />
+        <Route path='/home/:userName/Info' element={<Info/>} />
+      </Routes>
     </div>
-  )
+  );
 }
 
-
-export default App
+export default App;
