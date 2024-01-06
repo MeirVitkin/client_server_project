@@ -1,0 +1,51 @@
+ 
+  /* POSTS STYLE */
+  
+  .postsContainer ,.commentsContaier  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .post {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 600px;
+    min-height: 100px;
+    border: 1px solid;
+    margin: 7px;
+    padding: 10px;
+    font-style: italic;
+    box-sizing: border-box;
+  }
+  
+  h3 {
+    display: inline;
+  }
+  
+  .postHeader {
+    cursor: pointer;
+    padding-right: 15px;
+    font-size: large;
+  }
+  
+  .post.expanded {
+    flex-direction: column;
+    gap: 16px;
+    background-color: rgb(223, 240, 240);
+  }
+  .commentsButton{
+    border: rgb(80, 71, 71) solid 3px;
+    padding: 5px;
+    font-size: 15px;
+  }
+  .comment{
+    min-height: 30px;
+    gap: 15px;
+    padding: 7px;
+    background-color: rgb(153, 241, 241);
+    border: rgb(168, 161, 161) solid 1px;
+    gap: 20px;
+  }

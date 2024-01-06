@@ -8,7 +8,7 @@ const Todos = () => {
     const [todos, setTodos] = useState([]);
     const [editing, setEditing] = useState(null);
 
-    const { id } = JSON.parse(localStorage.getItem('currentUser'))
+    const { id, username, website, name } = JSON.parse(localStorage.getItem('currentUser'))
     useEffect(() => {
         fetchTodos()
     }, [])
@@ -16,7 +16,12 @@ const Todos = () => {
     const fetchTodos = async () => {
         try {
             const { data } = await axios.get(
-                `http://localhost:8000/todos/${id}`
+                `http://localhost:8000/todos/${id}`,
+                {
+                    headers:{
+                        Authorization:`${username}:${website}`   
+                    }
+                 }
             )
             setTodos(data);
         } catch (e) {
@@ -27,7 +32,12 @@ const Todos = () => {
     const handleCheck = async (todoId) => {
         try {
             const response = await axios.put(
-                `http://localhost:8000/todos/check/${id}?id=${todoId}`
+                `http://localhost:8000/todos/check/${id}?id=${todoId}`,null,
+                {
+                    headers:{
+                        Authorization:`${username}:${website}`   
+                    }
+                 }
             )
             fetchTodos()
         } catch (error) {
@@ -37,7 +47,12 @@ const Todos = () => {
     const handleDelete = async (todoId) => {
         try {
             const response = await axios.delete(
-                `http://localhost:8000/todos/${id}?id=${todoId}`
+                `http://localhost:8000/todos/${id}?id=${todoId}`,
+                {
+                    headers:{
+                        Authorization:`${username}:${website}`   
+                    }
+                 }
             )
             fetchTodos()
         } catch (error) {
@@ -53,7 +68,13 @@ const Todos = () => {
             title: updatedTodo.title,
         }
         await axios.put(
-            `http://localhost:8000/todos/edit/${id}`, editTodoTitle
+            `http://localhost:8000/todos/edit/${id}`,
+             editTodoTitle,
+             {
+                headers:{
+                    Authorization:`${username}:${website}`   
+                }
+             }
         )
         fetchTodos()
         setEditing(null)
@@ -62,6 +83,8 @@ const Todos = () => {
 
     return (
         <div className='todoContainer'>
+      <h1 className="userNameHeader">{name}</h1>
+
             <h2>Todos</h2>
             <AddContent
                 fetchTodos={fetchTodos}

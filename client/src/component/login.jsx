@@ -14,7 +14,12 @@ const Login = () => {
     console.log(detailes);
     try {
       const  {data}  = await axios.get(
-        "http://localhost:8000/login",{params: detailes}
+        "http://localhost:8000/login",
+        {
+          headers:{
+              Authorization:`${detailes.UserName}:${detailes.password}`   
+          }
+       }
         );
         console.log(data);
         localStorage.setItem('currentUser',JSON.stringify(data) )

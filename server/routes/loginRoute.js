@@ -5,11 +5,10 @@ const loginRoute = express.Router();
 
 loginRoute.get('/', async (req, res) => {
     try{
-        const userName =  req.query.UserName;
-        const password =  req.query.password;
-        console.log(userName, password);
-        const user = await login(userName, password);
-        res.json(user);
+        if(!req.user){
+            res.status(401).send();
+        }
+        res.json(req.user);
     }catch(err){
          res.statusMessage= err
         res.status(500).send();

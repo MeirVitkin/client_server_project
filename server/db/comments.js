@@ -46,3 +46,9 @@ async function deledeComment(id){
 
 }
 // deledeComment(7)
+module.exports = {
+    getComments,
+    addComment,
+    editComment,
+    deledeComment
+}

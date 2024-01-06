@@ -16,10 +16,7 @@ async function getCompletedTodos(id) {
         AND completed = 1
     `;
     const [data] = await pool.query(todosQuery, [id])
-    console.log(data);
 }
-//getCompletedTodos(3)
-
 
 async function getUnCompletedTodos(id) {
     const todosQuery = `
@@ -28,9 +25,7 @@ async function getUnCompletedTodos(id) {
         AND completed = 0
     `;
     const [data] = await pool.query(todosQuery, [id])
-    console.log(data);
 }
-//getUnCompletedTodos(3)
 
 
 async function addTodos(userId, title) {
@@ -39,7 +34,6 @@ async function addTodos(userId, title) {
         VALUES (?, ?, 0)
     `;
     const [result] = await pool.query(insertQuery, [userId, title]);
-    console.log(result);
 }
 
 async function editTitle(userId, id, title){

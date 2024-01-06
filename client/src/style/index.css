@@ -227,44 +227,7 @@ body {
     height: 35px;
     font-size: large;
   }
-  
-  /* POSTS STYLE */
-  
-  .postsContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .post {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 600px;
-    height: 100px;
-    border: 1px solid;
-    margin: 7px;
-    padding: 10px;
-    font-style: italic;
-    box-sizing: border-box;
-  }
-  
-  h3 {
-    display: inline;
-  }
-  
-  .postHeader {
-    cursor: pointer;
-    padding-right: 15px;
-    font-size: large;
-  }
-  
-  .post.expanded {
-    height: auto;
-    background-color: rgb(223, 240, 240);
-  }
+ 
   
   /* ALBUMS STYLE */
   
