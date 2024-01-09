@@ -3,6 +3,7 @@ import { FaEdit } from 'react-icons/fa';
 import React, { useEffect, useState } from 'react'
 import "../style/posts.css"
 import Comments from './comment';
+import Home from './home';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
@@ -35,13 +36,15 @@ const Posts = () => {
 
   const handlePostClick = (postId) => {
     setExpandedPostId((prevId) => (prevId === postId ? null : postId));
+    setComments(!expandedPostId ? null : comments);
   };
   const handelCommentsClick = (postId) => {
     setComments((prevId) => (prevId === postId ? null : postId));
   }
   
   return (
-    <div className='postsContainer'> 
+    <div className='postsContainer'>
+    <Home/>
     <h2>Posts</h2>
     {posts.map((post) => (
       <div key={post.id} className={`post ${expandedPostId === post.id ? 'expanded' : ''}`}>

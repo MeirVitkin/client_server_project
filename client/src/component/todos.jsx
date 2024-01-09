@@ -3,12 +3,13 @@ import { FaTrashAlt, FaEdit } from 'react-icons/fa';
 import UpdateContent from './UpdateContent';
 import AddContent from './AddContent';
 import axios from 'axios'
+import Home from './home';
 
 const Todos = () => {
     const [todos, setTodos] = useState([]);
     const [editing, setEditing] = useState(null);
 
-    const { id, username, website, name } = JSON.parse(localStorage.getItem('currentUser'))
+    const { id, username, website } = JSON.parse(localStorage.getItem('currentUser'))
     useEffect(() => {
         fetchTodos()
     }, [])
@@ -83,8 +84,7 @@ const Todos = () => {
 
     return (
         <div className='todoContainer'>
-      <h1 className="userNameHeader">{name}</h1>
-
+            <Home/>
             <h2>Todos</h2>
             <AddContent
                 fetchTodos={fetchTodos}

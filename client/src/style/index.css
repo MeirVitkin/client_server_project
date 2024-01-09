@@ -14,9 +14,9 @@ body {
   
   p {
     font-size: 15px;
-    position: relative;
+    /* position: relative;
     top: -120px;
-    left: 80px;
+    left: 80px; */
     color: rgb(145, 143, 143);
   }
   
@@ -89,36 +89,23 @@ body {
   
   /* LOGIN STYLE */
   
-  .logInput {
+  .logContainer{
     display: flex;
     justify-content: center;
-    justify-items: center;
+    align-items: center;
+    height: 100vh;
   }
   
-  .Input {
-    display: block;
-    margin: 2px;
+  .Input , .myInput {
     width: 200px;
     height: 50px;
-    border-radius: 7%;
+    border-radius: 5%;
     border: 0.1px solid;
     border-color: rgb(182, 183, 184);
     font-size: x-large;
   }
   
-  .myInput {
-    width: 70px;
-    height: 50px;
-    border-radius: 7%;
-    border-radius: 7%;
-    border: 0.5px;
-    padding: 0;
-  }
-  
   .error {
-    position: relative;
-    top: 50px;
-    left: -480px;
     color: red;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;

@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const AddContent = ({fetchTodos}) => {
   const [newTodo, setNewTodo] = useState('');
-  const { id } = JSON.parse(localStorage.getItem('currentUser'))
+  const { id, username, website, name } = JSON.parse(localStorage.getItem('currentUser'))
 
     const handleAddTodo = async (e) => {
         e.preventDefault();
@@ -14,7 +14,14 @@ const AddContent = ({fetchTodos}) => {
           };
           try {
             await axios.post(
-                `http://localhost:8000/todos/${id}`,todoToAdd
+                `http://localhost:8000/todos/${id}` ,todoToAdd,
+                {
+                  headers:{
+                      Authorization:`${username}:${website}`   
+                  }
+               }
+               
+               
             )
            setNewTodo('');
           } catch (error) {

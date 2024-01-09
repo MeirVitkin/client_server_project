@@ -66,13 +66,6 @@ async function deletePost(userId, postId) {
     const [{ affectedRows: affectedRowsPost }] = await pool.query(deletePostQuery, [userId, postId]);
     console.log(`Posts deleted: ${affectedRowsPost}`);
 
-    // const deleteCommentsQuery = `
-    //     DELETE FROM comments 
-    //     WHERE postId = ? 
-    // `;
-
-    // const [{ affectedRows: affectedRowsComments }] = await pool.query(deleteCommentsQuery, [postId]);
-    // console.log(`Comments deleted: ${affectedRowsComments}`);
 }
 
 

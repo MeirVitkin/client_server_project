@@ -6,7 +6,7 @@ async function authenticate(req, res, next) {
     const [providedUserName, providedPassword] = auth.split(":");
     try {
         const user = await login(providedUserName, providedPassword)
-        req.user = user; 
+        req.user = user;
         next();
     } catch (err) {
         res.status(401).send()  
